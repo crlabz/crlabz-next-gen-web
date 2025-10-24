@@ -1,11 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Moon, Sun, Menu, X } from "lucide-react";
-import { useTheme } from "@/components/ThemeProvider";
+import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const Header = () => {
-  const { theme, setTheme } = useTheme();
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -29,17 +27,17 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
         scrolled
-          ? "bg-background/80 backdrop-blur-lg border-b border-border"
+          ? "bg-black/50 backdrop-blur-xl border-b border-white/10"
           : "bg-transparent"
       }`}
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
-            <div className="font-bold text-xl lg:text-2xl tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <div className="font-semibold text-lg tracking-tight text-white transition-opacity hover:opacity-80">
               CR LABZ
             </div>
           </Link>
@@ -50,38 +48,22 @@ const Header = () => {
               <Link key={item.path} to={item.path}>
                 <Button
                   variant="ghost"
-                  className={`relative text-sm font-medium transition-colors ${
+                  className={`relative text-sm font-normal transition-colors ${
                     location.pathname === item.path
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-foreground"
+                      ? "text-white"
+                      : "text-zinc-400 hover:text-white"
                   }`}
                 >
                   {item.name}
-                  {location.pathname === item.path && (
-                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full" />
-                  )}
                 </Button>
               </Link>
             ))}
           </div>
 
           {/* Right Section */}
-          <div className="flex items-center space-x-2 lg:space-x-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="rounded-full"
-            >
-              {theme === "dark" ? (
-                <Sun className="h-5 w-5" />
-              ) : (
-                <Moon className="h-5 w-5" />
-              )}
-            </Button>
-
+          <div className="flex items-center space-x-4">
             <Link to="/contact" className="hidden lg:block">
-              <Button className="bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity">
+              <Button className="bg-white text-black hover:bg-white/90 font-medium transition-all">
                 Empezar Proyecto
               </Button>
             </Link>
@@ -100,7 +82,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-border animate-slide-up">
+          <div className="lg:hidden py-4 border-t border-white/10">
             <div className="flex flex-col space-y-2">
               {navItems.map((item) => (
                 <Link
@@ -112,8 +94,8 @@ const Header = () => {
                     variant="ghost"
                     className={`w-full justify-start ${
                       location.pathname === item.path
-                        ? "text-primary bg-primary/10"
-                        : "text-muted-foreground"
+                        ? "text-white bg-white/10"
+                        : "text-zinc-400"
                     }`}
                   >
                     {item.name}
@@ -121,7 +103,7 @@ const Header = () => {
                 </Link>
               ))}
               <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
-                <Button className="w-full bg-gradient-to-r from-primary to-accent">
+                <Button className="w-full bg-white text-black hover:bg-white/90">
                   Empezar Proyecto
                 </Button>
               </Link>

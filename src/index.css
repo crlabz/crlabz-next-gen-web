@@ -8,83 +8,43 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 193 98% 50%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
 
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
 
-    --accent: 193 98% 50%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 193 98% 50%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(193 98% 50%), hsl(233 98% 60%));
-    --gradient-dark: linear-gradient(180deg, hsl(222 47% 6%), hsl(222 47% 11%));
-    --gradient-mesh: radial-gradient(at 0% 0%, hsl(193 98% 50% / 0.2) 0, transparent 50%), 
-                      radial-gradient(at 100% 100%, hsl(233 98% 60% / 0.2) 0, transparent 50%);
+    --gradient-primary: linear-gradient(to right, rgb(59, 130, 246), rgb(147, 51, 234));
+    --gradient-hero: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(120, 119, 198, 0.3), transparent);
     
     /* Effects */
-    --glow-cyan: 0 0 40px hsl(193 98% 50% / 0.3);
-    --shadow-lg: 0 20px 40px -10px hsl(222 47% 11% / 0.1);
-  }
-
-  .dark {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
-
-    --card: 222 47% 9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222 47% 9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 193 98% 50%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 217 33% 18%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217 33% 18%;
-    --muted-foreground: 215 20% 65%;
-
-    --accent: 193 98% 50%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217 33% 18%;
-    --input: 217 33% 18%;
-    --ring: 193 98% 50%;
-
-    --gradient-primary: linear-gradient(135deg, hsl(193 98% 50%), hsl(233 98% 60%));
-    --gradient-dark: linear-gradient(180deg, hsl(222 47% 6%), hsl(222 47% 11%));
-    --gradient-mesh: radial-gradient(at 0% 0%, hsl(193 98% 50% / 0.2) 0, transparent 50%), 
-                      radial-gradient(at 100% 100%, hsl(233 98% 60% / 0.2) 0, transparent 50%);
-    
-    --glow-cyan: 0 0 40px hsl(193 98% 50% / 0.5);
-    --shadow-lg: 0 20px 40px -10px hsl(0 0% 0% / 0.3);
+    --glow-blue: 0 0 80px rgba(59, 130, 246, 0.15);
+    --glow-purple: 0 0 80px rgba(147, 51, 234, 0.15);
   }
 }
 
@@ -98,50 +58,40 @@ All colors MUST be HSL.
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
-  /* Starfield animation */
-  @keyframes twinkle {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
+  /* Modern animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
   }
 
-  @keyframes glow {
-    0%, 100% { box-shadow: var(--glow-cyan); }
-    50% { box-shadow: 0 0 60px hsl(193 98% 50% / 0.5); }
-  }
-
-  .animate-twinkle {
-    animation: twinkle 3s ease-in-out infinite;
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .animate-glow {
-    animation: glow 2s ease-in-out infinite;
-  }
-
-  /* Scroll animations */
-  .fade-in-up {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.6s ease-out forwards;
-  }
-
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
   }
 
   /* Smooth scrolling */
   html {
     scroll-behavior: smooth;
+  }
+
+  /* Hover effects */
+  .hover-lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+  }
+
+  .hover-glow {
+    transition: box-shadow 0.3s ease;
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
   }
 }
